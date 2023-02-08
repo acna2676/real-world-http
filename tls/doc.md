@@ -31,3 +31,11 @@ $ openssl req -new -nodes -sha256 -key client.key -out client.csr -config openss
 # 証明書を自分の秘密鍵で署名して作成
 $ openssl x509 -req -days 365 -in client.csr -sha256 -out client.crt -CA ca.crt -CAkey ca.key -CAcreateserial -extfile ./openssl.cnf -extensions Client
 ```
+
+## Tips 
+### certificate signed by unknown authority エラー
+Dockerfileに以下を追記してオレオレ認証局を信用させる必要がある           
+```
+RUN apk --no-cache add ca-certificates
+ADD ca.crt /etc/ssl/certs/      
+```

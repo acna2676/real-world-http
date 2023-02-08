@@ -29,6 +29,7 @@ func main() {
 	}
 	// 通信を行う
 	resp, err := client.Get("https://localhost:18443")
+	// resp, err := client.Get("https://172.17.0.1:18443")
 	if err != nil {
 		panic(err)
 	}
